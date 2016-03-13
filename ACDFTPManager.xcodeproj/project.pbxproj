@@ -7,30 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2DE942701C95BE3D006BED3D /* ACDFTPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE942621C95BE3D006BED3D /* ACDFTPManager.m */; };
-		2DE942711C95BE3D006BED3D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE942641C95BE3D006BED3D /* AppDelegate.m */; };
-		2DE942721C95BE3D006BED3D /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2DE942651C95BE3D006BED3D /* Credits.rtf */; };
-		2DE942731C95BE3D006BED3D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2DE942671C95BE3D006BED3D /* InfoPlist.strings */; };
-		2DE942741C95BE3D006BED3D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DE942691C95BE3D006BED3D /* MainMenu.xib */; };
-		2DE942761C95BE3D006BED3D /* FTPMSample1.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE9426E1C95BE3D006BED3D /* FTPMSample1.m */; };
-		2DE942771C95BE3D006BED3D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE9426F1C95BE3D006BED3D /* main.m */; };
+		2DE942DC1C95C3AC006BED3D /* ACDFTPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE942CF1C95C3AC006BED3D /* ACDFTPManager.m */; };
+		2DE942DD1C95C3AC006BED3D /* FTPMSample1.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE942D21C95C3AC006BED3D /* FTPMSample1.m */; };
+		2DE942DE1C95C3AC006BED3D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE942D51C95C3AC006BED3D /* AppDelegate.m */; };
+		2DE942DF1C95C3AC006BED3D /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2DE942D61C95C3AC006BED3D /* Credits.rtf */; };
+		2DE942E11C95C3AC006BED3D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2DE942D91C95C3AC006BED3D /* InfoPlist.strings */; };
+		2DE942E21C95C3AC006BED3D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE942DA1C95C3AC006BED3D /* main.m */; };
+		2DE942E31C95C3AC006BED3D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DE942DB1C95C3AC006BED3D /* MainMenu.xib */; };
 		3611DAD0158253A60069C894 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3611DACF158253A60069C894 /* Cocoa.framework */; };
 		3611DAED158254BE0069C894 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3611DAEC158254BE0069C894 /* CoreServices.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2DE942611C95BE3D006BED3D /* ACDFTPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACDFTPManager.h; sourceTree = "<group>"; };
-		2DE942621C95BE3D006BED3D /* ACDFTPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACDFTPManager.m; sourceTree = "<group>"; };
-		2DE942631C95BE3D006BED3D /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		2DE942641C95BE3D006BED3D /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		2DE942661C95BE3D006BED3D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		2DE942681C95BE3D006BED3D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		2DE9426A1C95BE3D006BED3D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		2DE9426B1C95BE3D006BED3D /* FTPManager-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "FTPManager-Info.plist"; sourceTree = "<group>"; };
-		2DE9426C1C95BE3D006BED3D /* FTPManager-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FTPManager-Prefix.pch"; sourceTree = "<group>"; };
-		2DE9426D1C95BE3D006BED3D /* FTPMSample1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTPMSample1.h; sourceTree = "<group>"; };
-		2DE9426E1C95BE3D006BED3D /* FTPMSample1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTPMSample1.m; sourceTree = "<group>"; };
-		2DE9426F1C95BE3D006BED3D /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2DE942CE1C95C3AC006BED3D /* ACDFTPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACDFTPManager.h; sourceTree = "<group>"; };
+		2DE942CF1C95C3AC006BED3D /* ACDFTPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACDFTPManager.m; sourceTree = "<group>"; };
+		2DE942D11C95C3AC006BED3D /* FTPMSample1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTPMSample1.h; sourceTree = "<group>"; };
+		2DE942D21C95C3AC006BED3D /* FTPMSample1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTPMSample1.m; sourceTree = "<group>"; };
+		2DE942D41C95C3AC006BED3D /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		2DE942D51C95C3AC006BED3D /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		2DE942D61C95C3AC006BED3D /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
+		2DE942D71C95C3AC006BED3D /* FTPManager-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "FTPManager-Info.plist"; sourceTree = "<group>"; };
+		2DE942D81C95C3AC006BED3D /* FTPManager-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FTPManager-Prefix.pch"; sourceTree = "<group>"; };
+		2DE942D91C95C3AC006BED3D /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
+		2DE942DA1C95C3AC006BED3D /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2DE942DB1C95C3AC006BED3D /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		3611DACB158253A60069C894 /* ACDFTPManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ACDFTPManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3611DACF158253A60069C894 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		3611DAD2158253A60069C894 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -52,29 +52,53 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2DE942601C95BE3D006BED3D /* ACDFTPManager */ = {
+		2DE942CC1C95C3AC006BED3D /* ACDFTPManager */ = {
 			isa = PBXGroup;
 			children = (
-				2DE942611C95BE3D006BED3D /* ACDFTPManager.h */,
-				2DE942621C95BE3D006BED3D /* ACDFTPManager.m */,
-				2DE942631C95BE3D006BED3D /* AppDelegate.h */,
-				2DE942641C95BE3D006BED3D /* AppDelegate.m */,
-				2DE942651C95BE3D006BED3D /* Credits.rtf */,
-				2DE942671C95BE3D006BED3D /* InfoPlist.strings */,
-				2DE942691C95BE3D006BED3D /* MainMenu.xib */,
-				2DE9426B1C95BE3D006BED3D /* FTPManager-Info.plist */,
-				2DE9426C1C95BE3D006BED3D /* FTPManager-Prefix.pch */,
-				2DE9426D1C95BE3D006BED3D /* FTPMSample1.h */,
-				2DE9426E1C95BE3D006BED3D /* FTPMSample1.m */,
-				2DE9426F1C95BE3D006BED3D /* main.m */,
+				2DE942CD1C95C3AC006BED3D /* Classes */,
+				2DE942D01C95C3AC006BED3D /* Example */,
+				2DE942D31C95C3AC006BED3D /* Supporting Files */,
 			);
 			path = ACDFTPManager;
+			sourceTree = "<group>";
+		};
+		2DE942CD1C95C3AC006BED3D /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				2DE942CE1C95C3AC006BED3D /* ACDFTPManager.h */,
+				2DE942CF1C95C3AC006BED3D /* ACDFTPManager.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		2DE942D01C95C3AC006BED3D /* Example */ = {
+			isa = PBXGroup;
+			children = (
+				2DE942D11C95C3AC006BED3D /* FTPMSample1.h */,
+				2DE942D21C95C3AC006BED3D /* FTPMSample1.m */,
+			);
+			path = Example;
+			sourceTree = "<group>";
+		};
+		2DE942D31C95C3AC006BED3D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2DE942D41C95C3AC006BED3D /* AppDelegate.h */,
+				2DE942D51C95C3AC006BED3D /* AppDelegate.m */,
+				2DE942DB1C95C3AC006BED3D /* MainMenu.xib */,
+				2DE942D61C95C3AC006BED3D /* Credits.rtf */,
+				2DE942D71C95C3AC006BED3D /* FTPManager-Info.plist */,
+				2DE942D81C95C3AC006BED3D /* FTPManager-Prefix.pch */,
+				2DE942D91C95C3AC006BED3D /* InfoPlist.strings */,
+				2DE942DA1C95C3AC006BED3D /* main.m */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		3611DAC0158253A50069C894 = {
 			isa = PBXGroup;
 			children = (
-				2DE942601C95BE3D006BED3D /* ACDFTPManager */,
+				2DE942CC1C95C3AC006BED3D /* ACDFTPManager */,
 				3611DACE158253A60069C894 /* Frameworks */,
 				3611DACC158253A60069C894 /* Products */,
 			);
@@ -159,9 +183,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DE942721C95BE3D006BED3D /* Credits.rtf in Resources */,
-				2DE942731C95BE3D006BED3D /* InfoPlist.strings in Resources */,
-				2DE942741C95BE3D006BED3D /* MainMenu.xib in Resources */,
+				2DE942DF1C95C3AC006BED3D /* Credits.rtf in Resources */,
+				2DE942E11C95C3AC006BED3D /* InfoPlist.strings in Resources */,
+				2DE942E31C95C3AC006BED3D /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,41 +196,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DE942711C95BE3D006BED3D /* AppDelegate.m in Sources */,
-				2DE942701C95BE3D006BED3D /* ACDFTPManager.m in Sources */,
-				2DE942771C95BE3D006BED3D /* main.m in Sources */,
-				2DE942761C95BE3D006BED3D /* FTPMSample1.m in Sources */,
+				2DE942DD1C95C3AC006BED3D /* FTPMSample1.m in Sources */,
+				2DE942DC1C95C3AC006BED3D /* ACDFTPManager.m in Sources */,
+				2DE942E21C95C3AC006BED3D /* main.m in Sources */,
+				2DE942DE1C95C3AC006BED3D /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		2DE942651C95BE3D006BED3D /* Credits.rtf */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2DE942661C95BE3D006BED3D /* en */,
-			);
-			name = Credits.rtf;
-			sourceTree = "<group>";
-		};
-		2DE942671C95BE3D006BED3D /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2DE942681C95BE3D006BED3D /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		2DE942691C95BE3D006BED3D /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2DE9426A1C95BE3D006BED3D /* en */,
-			);
-			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		3611DAE7158253A60069C894 /* Debug */ = {
@@ -282,8 +279,8 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ACDFTPManager/FTPManager-Prefix.pch";
-				INFOPLIST_FILE = "$(SRCROOT)/ACDFTPManager/FTPManager-Info.plist";
+				GCC_PREFIX_HEADER = "ACDFTPManager/Supporting Files/FTPManager-Prefix.pch";
+				INFOPLIST_FILE = "$(SRCROOT)/ACDFTPManager/Supporting Files/FTPManager-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.WangBo.ACDFTPManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -297,8 +294,8 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ACDFTPManager/FTPManager-Prefix.pch";
-				INFOPLIST_FILE = "$(SRCROOT)/ACDFTPManager/FTPManager-Info.plist";
+				GCC_PREFIX_HEADER = "ACDFTPManager/Supporting Files/FTPManager-Prefix.pch";
+				INFOPLIST_FILE = "$(SRCROOT)/ACDFTPManager/Supporting Files/FTPManager-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.WangBo.ACDFTPManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";

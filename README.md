@@ -12,7 +12,7 @@ ACDFTPManager class for mac os x and iOS.
 
     
 ### Creators
-    Created by [_crearor](http://blog.csdn.net/hhcncx "_creator").
+    Created by [_creator](http://blog.csdn.net/hhcncx "_creator").
     For questions, email 983144253@qq.com or 0xwangbo@gmail.com. Of course, the former can get in touch with me quickly.
 
     For license information, please refer to the license file in the ACDFTPManager directory.

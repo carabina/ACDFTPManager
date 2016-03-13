@@ -1,0 +1,334 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2DE942701C95BE3D006BED3D /* ACDFTPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE942621C95BE3D006BED3D /* ACDFTPManager.m */; };
+		2DE942711C95BE3D006BED3D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE942641C95BE3D006BED3D /* AppDelegate.m */; };
+		2DE942721C95BE3D006BED3D /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2DE942651C95BE3D006BED3D /* Credits.rtf */; };
+		2DE942731C95BE3D006BED3D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2DE942671C95BE3D006BED3D /* InfoPlist.strings */; };
+		2DE942741C95BE3D006BED3D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DE942691C95BE3D006BED3D /* MainMenu.xib */; };
+		2DE942761C95BE3D006BED3D /* FTPMSample1.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE9426E1C95BE3D006BED3D /* FTPMSample1.m */; };
+		2DE942771C95BE3D006BED3D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE9426F1C95BE3D006BED3D /* main.m */; };
+		3611DAD0158253A60069C894 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3611DACF158253A60069C894 /* Cocoa.framework */; };
+		3611DAED158254BE0069C894 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3611DAEC158254BE0069C894 /* CoreServices.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2DE942611C95BE3D006BED3D /* ACDFTPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACDFTPManager.h; sourceTree = "<group>"; };
+		2DE942621C95BE3D006BED3D /* ACDFTPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACDFTPManager.m; sourceTree = "<group>"; };
+		2DE942631C95BE3D006BED3D /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		2DE942641C95BE3D006BED3D /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		2DE942661C95BE3D006BED3D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		2DE942681C95BE3D006BED3D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		2DE9426A1C95BE3D006BED3D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		2DE9426B1C95BE3D006BED3D /* FTPManager-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "FTPManager-Info.plist"; sourceTree = "<group>"; };
+		2DE9426C1C95BE3D006BED3D /* FTPManager-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FTPManager-Prefix.pch"; sourceTree = "<group>"; };
+		2DE9426D1C95BE3D006BED3D /* FTPMSample1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTPMSample1.h; sourceTree = "<group>"; };
+		2DE9426E1C95BE3D006BED3D /* FTPMSample1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTPMSample1.m; sourceTree = "<group>"; };
+		2DE9426F1C95BE3D006BED3D /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3611DACB158253A60069C894 /* ACDFTPManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ACDFTPManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3611DACF158253A60069C894 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		3611DAD2158253A60069C894 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		3611DAD3158253A60069C894 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		3611DAD4158253A60069C894 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		3611DAEC158254BE0069C894 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3611DAC8158253A60069C894 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3611DAED158254BE0069C894 /* CoreServices.framework in Frameworks */,
+				3611DAD0158253A60069C894 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2DE942601C95BE3D006BED3D /* ACDFTPManager */ = {
+			isa = PBXGroup;
+			children = (
+				2DE942611C95BE3D006BED3D /* ACDFTPManager.h */,
+				2DE942621C95BE3D006BED3D /* ACDFTPManager.m */,
+				2DE942631C95BE3D006BED3D /* AppDelegate.h */,
+				2DE942641C95BE3D006BED3D /* AppDelegate.m */,
+				2DE942651C95BE3D006BED3D /* Credits.rtf */,
+				2DE942671C95BE3D006BED3D /* InfoPlist.strings */,
+				2DE942691C95BE3D006BED3D /* MainMenu.xib */,
+				2DE9426B1C95BE3D006BED3D /* FTPManager-Info.plist */,
+				2DE9426C1C95BE3D006BED3D /* FTPManager-Prefix.pch */,
+				2DE9426D1C95BE3D006BED3D /* FTPMSample1.h */,
+				2DE9426E1C95BE3D006BED3D /* FTPMSample1.m */,
+				2DE9426F1C95BE3D006BED3D /* main.m */,
+			);
+			path = ACDFTPManager;
+			sourceTree = "<group>";
+		};
+		3611DAC0158253A50069C894 = {
+			isa = PBXGroup;
+			children = (
+				2DE942601C95BE3D006BED3D /* ACDFTPManager */,
+				3611DACE158253A60069C894 /* Frameworks */,
+				3611DACC158253A60069C894 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3611DACC158253A60069C894 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3611DACB158253A60069C894 /* ACDFTPManager.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3611DACE158253A60069C894 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3611DAEC158254BE0069C894 /* CoreServices.framework */,
+				3611DACF158253A60069C894 /* Cocoa.framework */,
+				3611DAD1158253A60069C894 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3611DAD1158253A60069C894 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3611DAD2158253A60069C894 /* AppKit.framework */,
+				3611DAD3158253A60069C894 /* CoreData.framework */,
+				3611DAD4158253A60069C894 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3611DACA158253A60069C894 /* ACDFTPManager */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3611DAE9158253A60069C894 /* Build configuration list for PBXNativeTarget "ACDFTPManager" */;
+			buildPhases = (
+				3611DAC7158253A60069C894 /* Sources */,
+				3611DAC8158253A60069C894 /* Frameworks */,
+				3611DAC9158253A60069C894 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ACDFTPManager;
+			productName = FTPManager;
+			productReference = 3611DACB158253A60069C894 /* ACDFTPManager.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3611DAC2158253A50069C894 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = nkreipke;
+			};
+			buildConfigurationList = 3611DAC5158253A50069C894 /* Build configuration list for PBXProject "ACDFTPManager" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 3611DAC0158253A50069C894;
+			productRefGroup = 3611DACC158253A60069C894 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3611DACA158253A60069C894 /* ACDFTPManager */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3611DAC9158253A60069C894 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2DE942721C95BE3D006BED3D /* Credits.rtf in Resources */,
+				2DE942731C95BE3D006BED3D /* InfoPlist.strings in Resources */,
+				2DE942741C95BE3D006BED3D /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3611DAC7158253A60069C894 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2DE942711C95BE3D006BED3D /* AppDelegate.m in Sources */,
+				2DE942701C95BE3D006BED3D /* ACDFTPManager.m in Sources */,
+				2DE942771C95BE3D006BED3D /* main.m in Sources */,
+				2DE942761C95BE3D006BED3D /* FTPMSample1.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		2DE942651C95BE3D006BED3D /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2DE942661C95BE3D006BED3D /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		2DE942671C95BE3D006BED3D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2DE942681C95BE3D006BED3D /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		2DE942691C95BE3D006BED3D /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2DE9426A1C95BE3D006BED3D /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3611DAE7158253A60069C894 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		3611DAE8158253A60069C894 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		3611DAEA158253A60069C894 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ACDFTPManager/FTPManager-Prefix.pch";
+				INFOPLIST_FILE = "$(SRCROOT)/ACDFTPManager/FTPManager-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_BUNDLE_IDENTIFIER = com.WangBo.ACDFTPManager;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		3611DAEB158253A60069C894 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ACDFTPManager/FTPManager-Prefix.pch";
+				INFOPLIST_FILE = "$(SRCROOT)/ACDFTPManager/FTPManager-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_BUNDLE_IDENTIFIER = com.WangBo.ACDFTPManager;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3611DAC5158253A50069C894 /* Build configuration list for PBXProject "ACDFTPManager" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3611DAE7158253A60069C894 /* Debug */,
+				3611DAE8158253A60069C894 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3611DAE9158253A60069C894 /* Build configuration list for PBXNativeTarget "ACDFTPManager" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3611DAEA158253A60069C894 /* Debug */,
+				3611DAEB158253A60069C894 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3611DAC2158253A50069C894 /* Project object */;
+}

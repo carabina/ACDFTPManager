@@ -6,82 +6,12 @@
 //  Copyright © 2016年 WangBo. All rights reserved.
 //
 
+#import "ACDFTPServer.h"
 #import <Foundation/Foundation.h>
 #import <netdb.h>
 #import <netinet/in.h>
 #import <sys/socket.h>
 #import <sys/types.h>
-
-// these are used internally:
-#define FTPANONYMOUS @"anonymous"
-
-/*enum {
-    kFTPAnswerSuccess = 200,
-    kFTPAnswerLoggedIn = 230,
-    kFTPAnswerFileActionOkay = 250,
-    kFTPAnswerNeedsPassword = 331,
-    kFTPAnswerNotAvailable = 421,
-    kFTPAnswerNotLoggedIn = 530
-};*/
-
-@interface ACDFTPServer : NSObject {
-  @private
-    NSString *destination;
-    NSString *password;
-    NSString *username;
-    int port;
-}
-
-/**
- *  The URL of the FMServer.
- */
-@property (strong) NSString *destination;
-
-/**
- *  The password for the FMServer login.
- */
-@property (strong) NSString *password;
-
-/**
- *  The username for the FMServer login.
- */
-@property (strong) NSString *username;
-
-/**
- *  The port which is used for the connection.
- */
-@property (unsafe_unretained) int port;
-
-/**
- *  Returns a FMServer initialized with the given URL and credentials.
- *
- *  @param dest The URL of the FTP server.
- *  @param user The username of the account which will be used to log in.
- *  @param pass The password which will be used to log in.
- *
- *  @return A FMServer object with the given URL, username and password.
- */
-+ (ACDFTPServer *)serverWithDestination:(NSString *)dest
-                               username:(NSString *)user
-                               password:(NSString *)pass;
-
-/**
- *  Returns a FMServer initialized with the given URL and anonymous login.
- *
- *  @param dest The URL of the FTP server.
- *
- *  @return A FMServer object with the given URL and anonymous login.
- */
-+ (ACDFTPServer *)anonymousServerWithDestination:(NSString *)dest;
-
-@end
-
-@interface NSString (FTPManagerNSStringAdditions)
-- (NSString *)stringWithoutProtocol;
-- (NSURL *)ftpURLForPort:(int)port;
-- (NSString *)fmhost;
-- (NSString *)fmdir;
-@end
 
 enum { kSendBufferSize = 32768 };
 

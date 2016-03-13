@@ -7,21 +7,22 @@
 //
 
 #import "ACDFTPManager.h"
+#import "ACDFTPManagerThread.h"
 #import "NSString+FTPManagerNSStringAdditions.h"
 
 #define And(val1, val2)                                                        \
     { val1 = val1 && val2; }
+
 #define AndV(val1, val2, message)                                              \
     {                                                                          \
         And(val1, val2);                                                       \
         if (!val2) NSLog(message);                                             \
     }
+
 #define Check(val1)                                                            \
     {                                                                          \
         if (val1 == NO) return NO;                                             \
     }
-
-#pragma mark -
 
 #define RunInSeparateThread(...)                                               \
     ({                                                                         \
@@ -32,40 +33,7 @@
         result;                                                                \
     })
 
-@interface ACDFTPManagerThread : NSObject {
-  @private
-    NSCondition *waitCondition;
-}
-
-@property (copy) void (^block)(void);
-+ (void)runInSeparateThread:(void (^)(void))block;
-@end
-
-@implementation ACDFTPManagerThread
-
-+ (void)runInSeparateThread:(void (^)(void))block {
-    ACDFTPManagerThread *thread = [[ACDFTPManagerThread alloc] init];
-    thread.block = block;
-    thread->waitCondition = [[NSCondition alloc] init];
-
-    [thread->waitCondition lock];
-
-    NSThread *t = [[NSThread alloc] initWithTarget:thread
-                                          selector:@selector(threadMain)
-                                            object:nil];
-    [t start];
-    [thread->waitCondition wait];
-    [thread->waitCondition unlock];
-}
-
-- (void)threadMain {
-    @autoreleasepool {
-        self.block();
-        [waitCondition broadcast];
-    }
-}
-
-@end
+#pragma mark -
 
 @interface ACDFTPManager ()
 
@@ -79,17 +47,15 @@
                     command:(NSString *)fullCommand;
 @end
 
+#pragma mark -
+
 @implementation ACDFTPManager
 
 @synthesize bufferOffset = _bufferOffset;
 @synthesize bufferLimit = _bufferLimit;
 @synthesize delegate = _delegate;
 
-#pragma mark - Internal
-
-- (uint8_t *)buffer {
-    return self->_buffer;
-}
+#pragma mark - Life Cycle
 
 - (id)init {
     self = [super init];
@@ -100,20 +66,10 @@
     return self;
 }
 
-- (BOOL)_checkFMServer:(ACDFTPServer *)server {
-    BOOL success = YES;
-    AndV(success, (server != nil),
-         @"FMServer check failed: server cannot be nil");
-    Check(success);
-    AndV(success, (server.destination != nil),
-         @"FMServer check failed: destination cannot be nil");
-    AndV(success, (server.username != nil),
-         @"FMServer check failed: username cannot be nil");
-    AndV(success, (server.password != nil),
-         @"FMServer check failed: password cannot be nil");
-    AndV(success, (server.port > 0),
-         @"FMServer check failed: port cannot be negative");
-    return success;
+#pragma mark - Private Methods
+
+- (uint8_t *)buffer {
+    return self->_buffer;
 }
 
 - (unsigned long long)fileSizeOf:(NSURL *)file {
@@ -124,52 +80,6 @@
         return 0;
     }
     return [attrib fileSize];
-}
-
-- (NSArray *)_createListingArrayFromDirectoryListingData:(NSMutableData *)data {
-    NSMutableArray *listingArray = [NSMutableArray array];
-
-    NSUInteger offset = 0;
-    do {
-        CFIndex bytesConsumed;
-        CFDictionaryRef thisEntry = NULL;
-        bytesConsumed = CFFTPCreateParsedResourceListing(
-            NULL, &((const uint8_t *) self.directoryListingData.bytes)[offset],
-            self.directoryListingData.length - offset, &thisEntry);
-        if (bytesConsumed > 0) {
-            if (thisEntry != NULL) {
-                NSMutableDictionary *entry = [NSMutableDictionary
-                    dictionaryWithDictionary:(__bridge NSDictionary *)
-                                                 thisEntry];
-
-                // Converting kCFFTPResourceName entry to UTF8 to fix errors
-                // with Non-ASCII chars
-                NSString *nameEntry;
-                if ((nameEntry = entry[(id) kCFFTPResourceName])) {
-                    entry[(id) kCFFTPResourceName] = [[NSString alloc]
-                        initWithData:[nameEntry dataUsingEncoding:
-                                                    NSMacOSRomanStringEncoding
-                                             allowLossyConversion:YES]
-                            encoding:NSUTF8StringEncoding];
-                }
-
-                [listingArray addObject:entry];
-            }
-            offset += bytesConsumed;
-        }
-
-        if (thisEntry != NULL) {
-            CFRelease(thisEntry);
-        }
-
-        if (bytesConsumed == 0) {
-            break;
-        } else if (bytesConsumed < 0) {
-            return nil;
-        }
-    } while (YES);
-
-    return listingArray;
 }
 
 - (BOOL)_uploadData:(NSData *)data
@@ -436,6 +346,118 @@
     return success;
 }
 
+- (BOOL)_checkFMServer:(ACDFTPServer *)server {
+    BOOL success = YES;
+    AndV(success, (server != nil),
+         @"FMServer check failed: server cannot be nil");
+    Check(success);
+    AndV(success, (server.destination != nil),
+         @"FMServer check failed: destination cannot be nil");
+    AndV(success, (server.username != nil),
+         @"FMServer check failed: username cannot be nil");
+    AndV(success, (server.password != nil),
+         @"FMServer check failed: password cannot be nil");
+    AndV(success, (server.port > 0),
+         @"FMServer check failed: port cannot be negative");
+    return success;
+}
+
+- (NSArray *)_createListingArrayFromDirectoryListingData:(NSMutableData *)data {
+    NSMutableArray *listingArray = [NSMutableArray array];
+
+    NSUInteger offset = 0;
+    do {
+        CFIndex bytesConsumed;
+        CFDictionaryRef thisEntry = NULL;
+        bytesConsumed = CFFTPCreateParsedResourceListing(
+            NULL, &((const uint8_t *) self.directoryListingData.bytes)[offset],
+            self.directoryListingData.length - offset, &thisEntry);
+        if (bytesConsumed > 0) {
+            if (thisEntry != NULL) {
+                NSMutableDictionary *entry = [NSMutableDictionary
+                    dictionaryWithDictionary:(__bridge NSDictionary *)
+                                                 thisEntry];
+
+                // Converting kCFFTPResourceName entry to UTF8 to fix errors
+                // with Non-ASCII chars
+                NSString *nameEntry;
+                if ((nameEntry = entry[(id) kCFFTPResourceName])) {
+                    entry[(id) kCFFTPResourceName] = [[NSString alloc]
+                        initWithData:[nameEntry dataUsingEncoding:
+                                                    NSMacOSRomanStringEncoding
+                                             allowLossyConversion:YES]
+                            encoding:NSUTF8StringEncoding];
+                }
+
+                [listingArray addObject:entry];
+            }
+            offset += bytesConsumed;
+        }
+
+        if (thisEntry != NULL) {
+            CFRelease(thisEntry);
+        }
+
+        if (bytesConsumed == 0) {
+            break;
+        } else if (bytesConsumed < 0) {
+            return nil;
+        }
+    } while (YES);
+
+    return listingArray;
+}
+
+- (void)_streamDidEndWithSuccess:(BOOL)success
+                   failureReason:(FMStreamFailureReason)failureReason {
+    if (!currentRunLoop) return;
+
+    CFRunLoopRef runloop = currentRunLoop;
+    currentRunLoop = NULL;
+
+    action = _FMCurrentActionNone;
+    streamSuccess = success;
+    if (!streamSuccess) {
+        switch (failureReason) {
+            case FMStreamFailureReasonReadError:
+                NSLog(@"ftp stream failed: error while reading data");
+                break;
+            case FMStreamFailureReasonWriteError:
+                NSLog(@"ftp stream failed: error while writing data");
+                break;
+            case FMStreamFailureReasonGeneralError:
+                NSLog(@"ftp stream failed: general stream error (check "
+                      @"credentials?)");
+                break;
+            default:
+                break;
+        }
+    }
+    if (self.serverStream) {
+        [self.serverStream removeFromRunLoop:[NSRunLoop currentRunLoop]
+                                     forMode:NSDefaultRunLoopMode];
+        self.serverStream.delegate = nil;
+        [self.serverStream close];
+        self.serverStream = nil;
+    }
+    if (self.serverReadStream) {
+        [self.serverReadStream removeFromRunLoop:[NSRunLoop currentRunLoop]
+                                         forMode:NSDefaultRunLoopMode];
+        self.serverReadStream.delegate = nil;
+        [self.serverReadStream close];
+        self.serverReadStream = nil;
+    }
+    if (self.fileReader) {
+        [self.fileReader close];
+        self.fileReader = nil;
+    }
+    if (self.fileWriter) {
+        [self.fileWriter close];
+        self.fileWriter = nil;
+    }
+    CFRunLoopStop(runloop);
+}
+
 #pragma mark - Public Methods
 - (BOOL)uploadData:(NSData *)data
       withFileName:(NSString *)fileName
@@ -618,56 +640,7 @@
     [currentStream close];
 }
 
-#pragma mark - Stream
-- (void)_streamDidEndWithSuccess:(BOOL)success
-                   failureReason:(FMStreamFailureReason)failureReason {
-    if (!currentRunLoop) return;
-
-    CFRunLoopRef runloop = currentRunLoop;
-    currentRunLoop = NULL;
-
-    action = _FMCurrentActionNone;
-    streamSuccess = success;
-    if (!streamSuccess) {
-        switch (failureReason) {
-            case FMStreamFailureReasonReadError:
-                NSLog(@"ftp stream failed: error while reading data");
-                break;
-            case FMStreamFailureReasonWriteError:
-                NSLog(@"ftp stream failed: error while writing data");
-                break;
-            case FMStreamFailureReasonGeneralError:
-                NSLog(@"ftp stream failed: general stream error (check "
-                      @"credentials?)");
-                break;
-            default:
-                break;
-        }
-    }
-    if (self.serverStream) {
-        [self.serverStream removeFromRunLoop:[NSRunLoop currentRunLoop]
-                                     forMode:NSDefaultRunLoopMode];
-        self.serverStream.delegate = nil;
-        [self.serverStream close];
-        self.serverStream = nil;
-    }
-    if (self.serverReadStream) {
-        [self.serverReadStream removeFromRunLoop:[NSRunLoop currentRunLoop]
-                                         forMode:NSDefaultRunLoopMode];
-        self.serverReadStream.delegate = nil;
-        [self.serverReadStream close];
-        self.serverReadStream = nil;
-    }
-    if (self.fileReader) {
-        [self.fileReader close];
-        self.fileReader = nil;
-    }
-    if (self.fileWriter) {
-        [self.fileWriter close];
-        self.fileWriter = nil;
-    }
-    CFRunLoopStop(runloop);
-}
+#pragma mark - NSStream Delegate
 
 - (void)stream:(NSStream *)theStream handleEvent:(NSStreamEvent)streamEvent {
     switch (streamEvent) {

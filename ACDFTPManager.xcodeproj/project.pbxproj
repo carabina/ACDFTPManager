@@ -16,6 +16,7 @@
 		2DE942E31C95C3AC006BED3D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DE942DB1C95C3AC006BED3D /* MainMenu.xib */; };
 		2DE942E61C95CA00006BED3D /* ACDFTPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE942E51C95CA00006BED3D /* ACDFTPServer.m */; };
 		2DE942F01C95CB68006BED3D /* NSString+FTPManagerNSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE942EF1C95CB68006BED3D /* NSString+FTPManagerNSStringAdditions.m */; };
+		2DE942F31C95D306006BED3D /* ACDFTPManagerThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE942F21C95D306006BED3D /* ACDFTPManagerThread.m */; };
 		3611DAD0158253A60069C894 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3611DACF158253A60069C894 /* Cocoa.framework */; };
 		3611DAED158254BE0069C894 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3611DAEC158254BE0069C894 /* CoreServices.framework */; };
 /* End PBXBuildFile section */
@@ -37,6 +38,8 @@
 		2DE942E51C95CA00006BED3D /* ACDFTPServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACDFTPServer.m; sourceTree = "<group>"; };
 		2DE942EE1C95CB68006BED3D /* NSString+FTPManagerNSStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+FTPManagerNSStringAdditions.h"; sourceTree = "<group>"; };
 		2DE942EF1C95CB68006BED3D /* NSString+FTPManagerNSStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FTPManagerNSStringAdditions.m"; sourceTree = "<group>"; };
+		2DE942F11C95D306006BED3D /* ACDFTPManagerThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACDFTPManagerThread.h; sourceTree = "<group>"; };
+		2DE942F21C95D306006BED3D /* ACDFTPManagerThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACDFTPManagerThread.m; sourceTree = "<group>"; };
 		3611DACB158253A60069C894 /* ACDFTPManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ACDFTPManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3611DACF158253A60069C894 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		3611DAD2158253A60069C894 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -76,6 +79,8 @@
 				2DE942CF1C95C3AC006BED3D /* ACDFTPManager.m */,
 				2DE942E41C95CA00006BED3D /* ACDFTPServer.h */,
 				2DE942E51C95CA00006BED3D /* ACDFTPServer.m */,
+				2DE942F11C95D306006BED3D /* ACDFTPManagerThread.h */,
+				2DE942F21C95D306006BED3D /* ACDFTPManagerThread.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -216,6 +221,7 @@
 			files = (
 				2DE942DD1C95C3AC006BED3D /* FTPMSample1.m in Sources */,
 				2DE942DC1C95C3AC006BED3D /* ACDFTPManager.m in Sources */,
+				2DE942F31C95D306006BED3D /* ACDFTPManagerThread.m in Sources */,
 				2DE942F01C95CB68006BED3D /* NSString+FTPManagerNSStringAdditions.m in Sources */,
 				2DE942E21C95C3AC006BED3D /* main.m in Sources */,
 				2DE942DE1C95C3AC006BED3D /* AppDelegate.m in Sources */,

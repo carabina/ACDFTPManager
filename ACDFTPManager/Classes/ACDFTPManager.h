@@ -15,22 +15,22 @@
 
 enum { kSendBufferSize = 32768 };
 
-typedef enum {
+typedef NS_ENUM(NSInteger, FMStreamFailureReason) {
     FMStreamFailureReasonNone,
     FMStreamFailureReasonReadError,
     FMStreamFailureReasonWriteError,
     FMStreamFailureReasonGeneralError,
     FMStreamFailureReasonAborted
-} FMStreamFailureReason;
+};
 
-typedef enum {
+typedef NS_ENUM(NSInteger, _FMCurrentAction) {
     _FMCurrentActionUploadFile,
     _FMCurrentActionCreateNewFolder,
     _FMCurrentActionContentsOfServer,
     _FMCurrentActionDownloadFile,
     _FMCurrentActionSOCKET,
     _FMCurrentActionNone
-} _FMCurrentAction;
+};
 
 /* I do not recommend to use this delegate, because the methods will slow down
  * the process. On top of this they may have some threading issues that could
@@ -46,21 +46,17 @@ typedef enum {
 @end
 
 #pragma mark - Process Info Dictionary Constants
-
 // Process Info Dictionary Constants (for [manager progress]):
 // ******************
 #define kFMProcessInfoProgress @"progress" // 0.0 to 1.0
 #define kFMProcessInfoFileSize @"fileSize"
 #define kFMProcessInfoBytesProcessed @"bytesProcessed"
 #define kFMProcessInfoFileSizeProcessed @"fileSizeProcessed"
-// ---------------------------------(returns NSNumber
-// values)--------------------
+// ----------------------(returns NSNumber values)--------------------
 
 #pragma mark -
-
 @interface ACDFTPManager : NSObject <NSStreamDelegate> {
     CFRunLoopRef currentRunLoop;
-
     _FMCurrentAction action;
 
     uint8_t _buffer[kSendBufferSize];
@@ -99,7 +95,6 @@ typedef enum {
 @property (assign) id<ACDFTPManagerDelegate> delegate;
 
 #pragma mark - Public Methods
-
 // *** Information
 // These methods hold the current thread. You will get an answer with a success
 // information.
@@ -225,20 +220,5 @@ typedef enum {
  * to call this method from a different thread.
  */
 - (void)abort;
-
-// deprecated:
-/**
- *  Deletes a file or directory from the specified FTP server. Uses absolute
- * path on server as path parameter.
- *  DEPRECATED: Use deleteFileNamed:fromServer: instead.
- *
- *  @param absolutePath The absolute path to the file which will be deleted on
- * the server. The URL must end with a slash ("/").
- *  @param server       The server from which the file will be deleted.
- *
- *  @return YES if the file was successfully deleted, NO otherwise.
- */
-- (BOOL)deleteFile:(NSString *)absolutePath
-        fromServer:(ACDFTPServer *)server DEPRECATED_ATTRIBUTE;
 
 @end

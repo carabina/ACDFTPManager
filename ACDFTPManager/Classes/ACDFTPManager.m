@@ -501,13 +501,6 @@
                                 stringWithFormat:@"%@ %@", cmd, fileName]]);
 }
 
-- (BOOL)deleteFile:(NSString *)absolutePath fromServer:(ACDFTPServer *)server {
-    // this is deprecated.
-    // the method may not behave like it used to.
-    return RunInSeparateThread(
-        [self deleteFileNamed:absolutePath fromServer:server]);
-}
-
 - (BOOL)chmodFileNamed:(NSString *)fileName
                     to:(int)mode
               atServer:(ACDFTPServer *)server {

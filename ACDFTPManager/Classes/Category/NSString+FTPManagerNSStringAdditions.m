@@ -46,7 +46,6 @@
             stringWithFormat:@"%@/%@", hostWithProtocol,
                              [fmdir stringByAddingPercentEscapesUsingEncoding:
                                         NSUTF8StringEncoding]];
-
     return [NSURL URLWithString:url];
 }
 

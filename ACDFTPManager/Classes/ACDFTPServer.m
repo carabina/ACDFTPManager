@@ -9,7 +9,10 @@
 #import "ACDFTPServer.h"
 
 @implementation ACDFTPServer
+
 @synthesize password, username, destination, port;
+
+#pragma mark - Life Cycle
 - (id)init {
     self = [super init];
     if (self) {

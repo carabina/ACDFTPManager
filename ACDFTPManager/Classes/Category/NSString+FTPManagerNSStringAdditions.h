@@ -9,8 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @interface NSString (FTPManagerNSStringAdditions)
+
 - (NSString *)stringWithoutProtocol;
 - (NSURL *)ftpURLForPort:(int)port;
 - (NSString *)fmhost;
 - (NSString *)fmdir;
+
 @end

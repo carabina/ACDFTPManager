@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-// these are used internally:
 #define FTPANONYMOUS @"anonymous"
 
 /*enum {
@@ -21,7 +20,6 @@
  };*/
 
 @interface ACDFTPServer : NSObject {
-  @private
     NSString *destination;
     NSString *password;
     NSString *username;
@@ -29,44 +27,44 @@
 }
 
 /**
- *  The URL of the FMServer.
+ *  The URL of the ACDFTPServer.
  */
-@property (strong) NSString *destination;
+@property (copy) NSString *destination;
 
 /**
- *  The password for the FMServer login.
+ *  The password for the ACDFTPServer login.
  */
-@property (strong) NSString *password;
+@property (copy) NSString *password;
 
 /**
- *  The username for the FMServer login.
+ *  The username for the ACDFTPServer login.
  */
-@property (strong) NSString *username;
+@property (copy) NSString *username;
 
 /**
  *  The port which is used for the connection.
  */
-@property (unsafe_unretained) int port;
+@property (assign) int port;
 
 /**
- *  Returns a FMServer initialized with the given URL and credentials.
+ *  Returns a ACDFTPServer initialized with the given URL and credentials.
  *
  *  @param dest The URL of the FTP server.
  *  @param user The username of the account which will be used to log in.
  *  @param pass The password which will be used to log in.
  *
- *  @return A FMServer object with the given URL, username and password.
+ *  @return a ACDFTPServer object with the given URL, username and password.
  */
 + (ACDFTPServer *)serverWithDestination:(NSString *)dest
                                username:(NSString *)user
                                password:(NSString *)pass;
 
 /**
- *  Returns a FMServer initialized with the given URL and anonymous login.
+ *  Returns a ACDFTPServer initialized with the given URL and anonymous login.
  *
  *  @param dest The URL of the FTP server.
  *
- *  @return A FMServer object with the given URL and anonymous login.
+ *  @return a ACDFTPServer object with the given URL and anonymous login.
  */
 + (ACDFTPServer *)anonymousServerWithDestination:(NSString *)dest;
 

@@ -15,23 +15,24 @@
 
 enum { kSendBufferSize = 32768 };
 
-typedef NS_ENUM(NSInteger, FMStreamFailureReason) {
-    FMStreamFailureReasonNone,
-    FMStreamFailureReasonReadError,
-    FMStreamFailureReasonWriteError,
-    FMStreamFailureReasonGeneralError,
-    FMStreamFailureReasonAborted
+typedef NS_ENUM(NSInteger, ACDStreamFailureReason) {
+    ACDStreamFailureReasonNone,
+    ACDStreamFailureReasonReadError,
+    ACDStreamFailureReasonWriteError,
+    ACDStreamFailureReasonGeneralError,
+    ACDStreamFailureReasonAborted
 };
 
-typedef NS_ENUM(NSInteger, _FMCurrentAction) {
-    _FMCurrentActionUploadFile,
-    _FMCurrentActionCreateNewFolder,
-    _FMCurrentActionContentsOfServer,
-    _FMCurrentActionDownloadFile,
-    _FMCurrentActionSOCKET,
-    _FMCurrentActionNone
+typedef NS_ENUM(NSInteger, ACDCurrentAction) {
+    ACDCurrentActionUploadFile,
+    ACDCurrentActionCreateNewFolder,
+    ACDCurrentActionContentsOfServer,
+    ACDCurrentActionDownloadFile,
+    ACDCurrentActionSOCKET,
+    ACDCurrentActionNone
 };
 
+#pragma mark - ACDFTPManager Delegate
 /* I do not recommend to use this delegate, because the methods will slow down
  * the process. On top of this they may have some threading issues that could
  * be pretty confusing. Use an NSTimer and [manager progress] instead. */
@@ -57,7 +58,7 @@ typedef NS_ENUM(NSInteger, _FMCurrentAction) {
 #pragma mark -
 @interface ACDFTPManager : NSObject <NSStreamDelegate> {
     CFRunLoopRef currentRunLoop;
-    _FMCurrentAction action;
+    ACDCurrentAction action;
 
     uint8_t _buffer[kSendBufferSize];
     size_t _bufferOffset;

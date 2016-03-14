@@ -42,7 +42,7 @@
 @property (nonatomic, assign) size_t bufferLimit;
 
 - (void)_streamDidEndWithSuccess:(BOOL)success
-                   failureReason:(FMStreamFailureReason)failureReason;
+                   failureReason:(ACDStreamFailureReason)failureReason;
 - (BOOL)_ftpActionForServer:(ACDFTPServer *)server
                     command:(NSString *)fullCommand;
 @end
@@ -87,7 +87,7 @@
            toServer:(ACDFTPServer *)server {
     BOOL success = YES;
 
-    action = _FMCurrentActionUploadFile;
+    action = ACDCurrentActionUploadFile;
 
     fileSize = data.length;
     fileSizeProcessed = 0;
@@ -136,7 +136,7 @@
 - (BOOL)_uploadFile:(NSURL *)fileURL toServer:(ACDFTPServer *)server {
     BOOL success = YES;
 
-    action = _FMCurrentActionUploadFile;
+    action = ACDCurrentActionUploadFile;
 
     fileSize = [self fileSizeOf:fileURL];
     fileSizeProcessed = 0;
@@ -186,7 +186,7 @@
                 atServer:(ACDFTPServer *)server {
     BOOL success = YES;
 
-    action = _FMCurrentActionCreateNewFolder;
+    action = ACDCurrentActionCreateNewFolder;
 
     fileSize = 0;
 
@@ -230,7 +230,7 @@
 - (NSArray *)_contentsOfServer:(ACDFTPServer *)server {
     BOOL success = YES;
 
-    action = _FMCurrentActionContentsOfServer;
+    action = ACDCurrentActionContentsOfServer;
 
     fileSize = 0;
 
@@ -289,7 +289,7 @@
            fromServer:(ACDFTPServer *)server {
     BOOL success = YES;
 
-    action = _FMCurrentActionDownloadFile;
+    action = ACDCurrentActionDownloadFile;
 
     fileSize = 0;
     fileSizeProcessed = 0;
@@ -409,23 +409,23 @@
 }
 
 - (void)_streamDidEndWithSuccess:(BOOL)success
-                   failureReason:(FMStreamFailureReason)failureReason {
+                   failureReason:(ACDStreamFailureReason)failureReason {
     if (!currentRunLoop) return;
 
     CFRunLoopRef runloop = currentRunLoop;
     currentRunLoop = NULL;
 
-    action = _FMCurrentActionNone;
+    action = ACDCurrentActionNone;
     streamSuccess = success;
     if (!streamSuccess) {
         switch (failureReason) {
-            case FMStreamFailureReasonReadError:
+            case ACDStreamFailureReasonReadError:
                 NSLog(@"ftp stream failed: error while reading data");
                 break;
-            case FMStreamFailureReasonWriteError:
+            case ACDStreamFailureReasonWriteError:
                 NSLog(@"ftp stream failed: error while writing data");
                 break;
-            case FMStreamFailureReasonGeneralError:
+            case ACDStreamFailureReasonGeneralError:
                 NSLog(@"ftp stream failed: general stream error (check "
                       @"credentials?)");
                 break;
@@ -582,10 +582,10 @@
     // this does only work with uploadFile and downloadFile.
     NSStream *currentStream;
     switch (action) {
-        case _FMCurrentActionUploadFile:
+        case ACDCurrentActionUploadFile:
             currentStream = self.serverStream;
             break;
-        case _FMCurrentActionDownloadFile:
+        case ACDCurrentActionDownloadFile:
             currentStream = self.serverReadStream;
             break;
         default:
@@ -615,16 +615,16 @@
 - (void)abort {
     NSStream *currentStream;
     switch (action) {
-        case _FMCurrentActionUploadFile:
+        case ACDCurrentActionUploadFile:
             currentStream = self.serverStream;
             break;
-        case _FMCurrentActionDownloadFile:
+        case ACDCurrentActionDownloadFile:
             currentStream = self.serverReadStream;
             break;
-        case _FMCurrentActionCreateNewFolder:
+        case ACDCurrentActionCreateNewFolder:
             currentStream = self.serverStream;
             break;
-        case _FMCurrentActionContentsOfServer:
+        case ACDCurrentActionContentsOfServer:
             currentStream = self.serverReadStream;
             break;
         default:
@@ -635,7 +635,7 @@
     }
 
     [self _streamDidEndWithSuccess:YES
-                     failureReason:FMStreamFailureReasonAborted];
+                     failureReason:ACDStreamFailureReasonAborted];
 
     [currentStream close];
 }
@@ -645,7 +645,7 @@
 - (void)stream:(NSStream *)theStream handleEvent:(NSStreamEvent)streamEvent {
     switch (streamEvent) {
         case NSStreamEventOpenCompleted:
-            if (action == _FMCurrentActionDownloadFile) {
+            if (action == ACDCurrentActionDownloadFile) {
                 fileSize = [[theStream
                     propertyForKey:(id) kCFStreamPropertyFTPResourceSize]
                     longLongValue];
@@ -660,7 +660,7 @@
             }
             break;
         case NSStreamEventHasBytesAvailable:
-            if (action == _FMCurrentActionContentsOfServer) {
+            if (action == ACDCurrentActionContentsOfServer) {
                 NSInteger bytesRead;
 
                 bytesRead = [self.serverReadStream read:self.buffer
@@ -668,15 +668,15 @@
                 if (bytesRead == -1) {
                     [self _streamDidEndWithSuccess:NO
                                      failureReason:
-                                         FMStreamFailureReasonReadError];
+                                         ACDStreamFailureReasonReadError];
                 } else if (bytesRead == 0) {
                     [self _streamDidEndWithSuccess:YES
-                                     failureReason:FMStreamFailureReasonNone];
+                                     failureReason:ACDStreamFailureReasonNone];
                 } else {
                     [self.directoryListingData appendBytes:self.buffer
                                                     length:bytesRead];
                 }
-            } else if (action == _FMCurrentActionDownloadFile) {
+            } else if (action == ACDCurrentActionDownloadFile) {
                 if (self.bufferOffset == self.bufferLimit) {
                     // fill buffer with data from server
                     NSInteger bytesRead;
@@ -687,11 +687,11 @@
                     if (bytesRead == -1) {
                         [self _streamDidEndWithSuccess:NO
                                          failureReason:
-                                             FMStreamFailureReasonReadError];
+                                             ACDStreamFailureReasonReadError];
                     } else if (bytesRead == 0) {
-                        [self
-                            _streamDidEndWithSuccess:YES
-                                       failureReason:FMStreamFailureReasonNone];
+                        [self _streamDidEndWithSuccess:YES
+                                         failureReason:
+                                             ACDStreamFailureReasonNone];
                     } else {
                         self.bufferOffset = 0;
                         self.bufferLimit = bytesRead;
@@ -718,20 +718,20 @@
                     if (bytesWritten == -1 || bytesWritten == 0) {
                         [self _streamDidEndWithSuccess:NO
                                          failureReason:
-                                             FMStreamFailureReasonWriteError];
+                                             ACDStreamFailureReasonWriteError];
                     } else {
                         self.bufferOffset += bytesWritten;
                     }
                 }
             } else {
                 // something went wrong here...
-                [self
-                    _streamDidEndWithSuccess:NO
-                               failureReason:FMStreamFailureReasonGeneralError];
+                [self _streamDidEndWithSuccess:NO
+                                 failureReason:
+                                     ACDStreamFailureReasonGeneralError];
             }
             break;
         case NSStreamEventHasSpaceAvailable:
-            if (action == _FMCurrentActionUploadFile) {
+            if (action == ACDCurrentActionUploadFile) {
                 if (self.bufferOffset == self.bufferLimit) {
                     // read process
                     // fill buffer with data
@@ -743,11 +743,11 @@
                     if (bytesRead == -1) {
                         [self _streamDidEndWithSuccess:NO
                                          failureReason:
-                                             FMStreamFailureReasonReadError];
+                                             ACDStreamFailureReasonReadError];
                     } else if (bytesRead == 0) {
-                        [self
-                            _streamDidEndWithSuccess:YES
-                                       failureReason:FMStreamFailureReasonNone];
+                        [self _streamDidEndWithSuccess:YES
+                                         failureReason:
+                                             ACDStreamFailureReasonNone];
                     } else {
                         self.bufferOffset = 0;
                         self.bufferLimit = bytesRead;
@@ -764,7 +764,7 @@
                     if (bytesWritten == -1 || bytesWritten == 0) {
                         [self _streamDidEndWithSuccess:NO
                                          failureReason:
-                                             FMStreamFailureReasonWriteError];
+                                             ACDStreamFailureReasonWriteError];
                     } else {
                         self.bufferOffset += bytesWritten;
                         fileSizeProcessed += bytesWritten;
@@ -782,19 +782,19 @@
                 }
             } else {
                 // something went wrong here...
-                [self
-                    _streamDidEndWithSuccess:NO
-                               failureReason:FMStreamFailureReasonGeneralError];
+                [self _streamDidEndWithSuccess:NO
+                                 failureReason:
+                                     ACDStreamFailureReasonGeneralError];
             }
             break;
         case NSStreamEventErrorOccurred:
             [self _streamDidEndWithSuccess:NO
-                             failureReason:FMStreamFailureReasonGeneralError];
+                             failureReason:ACDStreamFailureReasonGeneralError];
             break;
         case NSStreamEventEndEncountered:
-            if (action == _FMCurrentActionCreateNewFolder) {
+            if (action == ACDCurrentActionCreateNewFolder) {
                 [self _streamDidEndWithSuccess:YES
-                                 failureReason:FMStreamFailureReasonNone];
+                                 failureReason:ACDStreamFailureReasonNone];
             }
             break;
         default:
@@ -846,7 +846,7 @@
                     command:(NSString *)fullCommand {
     // At first, we send all the commands, then we fetch the answers
     // to find out whether we were successful.
-    action = _FMCurrentActionSOCKET;
+    action = ACDCurrentActionSOCKET;
     const char *host =
         [[server.destination fmhost] cStringUsingEncoding:NSUTF8StringEncoding];
     const char *user =
@@ -929,7 +929,7 @@
     NSString *answer = [self _listenLoopForSocket:sockfd];
     close(sockfd);
     streamSuccess = [self _checkAnswers:answer];
-    action = _FMCurrentActionNone;
+    action = ACDCurrentActionNone;
     return streamSuccess;
 }
 @end

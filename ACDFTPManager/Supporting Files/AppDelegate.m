@@ -22,8 +22,9 @@
 @synthesize loginPasswordField = _loginPasswordField;
 @synthesize loginUserField = _loginUserField;
 @synthesize serverURLField = _serverURLField;
-
 @synthesize window = _window;
+
+#pragma mark -
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application

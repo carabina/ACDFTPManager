@@ -9,7 +9,15 @@
 #import "ACDFTPManager.h"
 #import <Cocoa/Cocoa.h>
 
-enum actions { upload, download, list, newfolder, del, chmod, nothing };
+typedef NS_ENUM(NSInteger, actions) {
+    upload,
+    download,
+    list,
+    newfolder,
+    del,
+    chmod,
+    nothing
+};
 
 @interface AppDelegate : NSObject <NSApplicationDelegate> {
 

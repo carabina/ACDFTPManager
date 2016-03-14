@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2DE942DC1C95C3AC006BED3D /* ACDFTPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE942CF1C95C3AC006BED3D /* ACDFTPManager.m */; };
-		2DE942DD1C95C3AC006BED3D /* FTPMSample1.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE942D21C95C3AC006BED3D /* FTPMSample1.m */; };
 		2DE942DE1C95C3AC006BED3D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE942D51C95C3AC006BED3D /* AppDelegate.m */; };
 		2DE942DF1C95C3AC006BED3D /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2DE942D61C95C3AC006BED3D /* Credits.rtf */; };
 		2DE942E11C95C3AC006BED3D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2DE942D91C95C3AC006BED3D /* InfoPlist.strings */; };
@@ -24,8 +23,6 @@
 /* Begin PBXFileReference section */
 		2DE942CE1C95C3AC006BED3D /* ACDFTPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACDFTPManager.h; sourceTree = "<group>"; };
 		2DE942CF1C95C3AC006BED3D /* ACDFTPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACDFTPManager.m; sourceTree = "<group>"; };
-		2DE942D11C95C3AC006BED3D /* FTPMSample1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTPMSample1.h; sourceTree = "<group>"; };
-		2DE942D21C95C3AC006BED3D /* FTPMSample1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTPMSample1.m; sourceTree = "<group>"; };
 		2DE942D41C95C3AC006BED3D /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2DE942D51C95C3AC006BED3D /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		2DE942D61C95C3AC006BED3D /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
@@ -65,7 +62,6 @@
 			isa = PBXGroup;
 			children = (
 				2DE942CD1C95C3AC006BED3D /* Classes */,
-				2DE942D01C95C3AC006BED3D /* Example */,
 				2DE942D31C95C3AC006BED3D /* Supporting Files */,
 			);
 			path = ACDFTPManager;
@@ -83,15 +79,6 @@
 				2DE942F21C95D306006BED3D /* ACDFTPManagerThread.m */,
 			);
 			path = Classes;
-			sourceTree = "<group>";
-		};
-		2DE942D01C95C3AC006BED3D /* Example */ = {
-			isa = PBXGroup;
-			children = (
-				2DE942D11C95C3AC006BED3D /* FTPMSample1.h */,
-				2DE942D21C95C3AC006BED3D /* FTPMSample1.m */,
-			);
-			path = Example;
 			sourceTree = "<group>";
 		};
 		2DE942D31C95C3AC006BED3D /* Supporting Files */ = {
@@ -219,7 +206,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DE942DD1C95C3AC006BED3D /* FTPMSample1.m in Sources */,
 				2DE942DC1C95C3AC006BED3D /* ACDFTPManager.m in Sources */,
 				2DE942F31C95D306006BED3D /* ACDFTPManagerThread.m in Sources */,
 				2DE942F01C95CB68006BED3D /* NSString+FTPManagerNSStringAdditions.m in Sources */,

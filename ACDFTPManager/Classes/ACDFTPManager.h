@@ -62,11 +62,9 @@ typedef NS_ENUM(NSInteger, _FMCurrentAction) {
     uint8_t _buffer[kSendBufferSize];
     size_t _bufferOffset;
     size_t _bufferLimit;
-
     unsigned long long fileSize;
     unsigned long long bytesProcessed;
     unsigned long long fileSizeProcessed;
-
     BOOL streamSuccess;
 }
 
@@ -197,7 +195,7 @@ typedef NS_ENUM(NSInteger, _FMCurrentAction) {
  *  Logs into the FTP server and logs out again. This can be used to check
  * whether the credentials are correct before trying to do a file operation.
  *
- *  @param server The FMServer FTP object to log into.
+ *  @param server The ACDFTPServer FTP object to log into.
  *
  *  @return YES if the login was successful, NO otherwise.
  */

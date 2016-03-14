@@ -3,7 +3,7 @@
 //  FTPManager
 //
 //  Created by Nico Kreipke on 08.06.12.
-//  Copyright (c) 2012 nkreipke. All rights reserved.
+//  Copyright (c) 2012 WangBo. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>

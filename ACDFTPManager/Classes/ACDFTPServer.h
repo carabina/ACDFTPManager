@@ -3,7 +3,7 @@
 //  ACDFTPManager
 //
 //  Created by WangBo on 16/3/14.
-//  Copyright © 2016年 nkreipke. All rights reserved.
+//  Copyright © 2016年 WangBo. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -19,12 +19,7 @@
  kFTPAnswerNotLoggedIn = 530
  };*/
 
-@interface ACDFTPServer : NSObject {
-    NSString *destination;
-    NSString *password;
-    NSString *username;
-    int port;
-}
+@interface ACDFTPServer : NSObject
 
 /**
  *  The URL of the ACDFTPServer.

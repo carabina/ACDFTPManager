@@ -3,14 +3,12 @@
 //  ACDFTPManager
 //
 //  Created by WangBo on 16/3/14.
-//  Copyright © 2016年 nkreipke. All rights reserved.
+//  Copyright © 2016年 WangBo. All rights reserved.
 //
 
 #import "ACDFTPServer.h"
 
 @implementation ACDFTPServer
-
-@synthesize password, username, destination, port;
 
 #pragma mark - Life Cycle
 - (id)init {

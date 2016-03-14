@@ -3,7 +3,7 @@
 //  ACDFTPManager
 //
 //  Created by WangBo on 16/3/14.
-//  Copyright © 2016年 nkreipke. All rights reserved.
+//  Copyright © 2016年 WangBo. All rights reserved.
 //
 
 #import "ACDFTPManagerThread.h"
@@ -14,6 +14,7 @@
     ACDFTPManagerThread *thread = [[ACDFTPManagerThread alloc] init];
     thread.block = block;
     thread->waitCondition = [[NSCondition alloc] init];
+
     [thread->waitCondition lock];
     NSThread *t = [[NSThread alloc] initWithTarget:thread
                                           selector:@selector(threadMain)

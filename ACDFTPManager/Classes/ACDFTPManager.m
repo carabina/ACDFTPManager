@@ -346,19 +346,19 @@
     return success;
 }
 
-- (BOOL)_checkFMServer:(ACDFTPServer *)server {
+- (BOOL)_checkACDFTPServer:(ACDFTPServer *)server {
     BOOL success = YES;
     AndV(success, (server != nil),
-         @"FMServer check failed: server cannot be nil");
+         @"ACDFTPServer check failed: server cannot be nil");
     Check(success);
     AndV(success, (server.destination != nil),
-         @"FMServer check failed: destination cannot be nil");
+         @"ACDFTPServer check failed: destination cannot be nil");
     AndV(success, (server.username != nil),
-         @"FMServer check failed: username cannot be nil");
+         @"ACDFTPServer check failed: username cannot be nil");
     AndV(success, (server.password != nil),
-         @"FMServer check failed: password cannot be nil");
+         @"ACDFTPServer check failed: password cannot be nil");
     AndV(success, (server.port > 0),
-         @"FMServer check failed: port cannot be negative");
+         @"ACDFTPServer check failed: port cannot be negative");
     return success;
 }
 
@@ -462,7 +462,7 @@
 - (BOOL)uploadData:(NSData *)data
       withFileName:(NSString *)fileName
           toServer:(ACDFTPServer *)server {
-    if (![self _checkFMServer:server]) {
+    if (![self _checkACDFTPServer:server]) {
         return NO;
     }
     if (!data) {
@@ -473,7 +473,7 @@
 }
 
 - (BOOL)uploadFile:(NSURL *)fileURL toServer:(ACDFTPServer *)server {
-    if (![self _checkFMServer:server]) {
+    if (![self _checkACDFTPServer:server]) {
         return NO;
     }
     if (!fileURL) {
@@ -489,7 +489,7 @@
 }
 
 - (BOOL)createNewFolder:(NSString *)folderName atServer:(ACDFTPServer *)server {
-    if (![self _checkFMServer:server]) {
+    if (![self _checkACDFTPServer:server]) {
         return NO;
     }
     if (!folderName) {
@@ -503,7 +503,7 @@
 }
 
 - (BOOL)deleteFileNamed:(NSString *)fileName fromServer:(ACDFTPServer *)server {
-    if (![self _checkFMServer:server]) {
+    if (![self _checkACDFTPServer:server]) {
         return NO;
     }
     if (!fileName) {
@@ -526,7 +526,7 @@
 - (BOOL)chmodFileNamed:(NSString *)fileName
                     to:(int)mode
               atServer:(ACDFTPServer *)server {
-    if (![self _checkFMServer:server]) {
+    if (![self _checkACDFTPServer:server]) {
         return NO;
     }
     if (!fileName) {
@@ -542,7 +542,7 @@
 }
 
 - (NSArray *)contentsOfServer:(ACDFTPServer *)server {
-    if (![self _checkFMServer:server]) {
+    if (![self _checkACDFTPServer:server]) {
         return nil;
     }
     return RunInSeparateThread([self _contentsOfServer:server]);
@@ -551,7 +551,7 @@
 - (BOOL)downloadFile:(NSString *)fileName
          toDirectory:(NSURL *)directoryURL
           fromServer:(ACDFTPServer *)server {
-    if (![self _checkFMServer:server]) {
+    if (![self _checkACDFTPServer:server]) {
         return NO;
     }
     if (!fileName) {
@@ -572,7 +572,7 @@
 }
 
 - (BOOL)checkLogin:(ACDFTPServer *)server {
-    if (![self _checkFMServer:server]) {
+    if (![self _checkACDFTPServer:server]) {
         return NO;
     }
     return RunInSeparateThread([self _ftpActionForServer:server command:nil]);

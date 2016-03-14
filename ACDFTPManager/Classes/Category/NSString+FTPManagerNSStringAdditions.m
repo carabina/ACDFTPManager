@@ -3,13 +3,15 @@
 //  ACDFTPManager
 //
 //  Created by WangBo on 16/3/14.
-//  Copyright © 2016年 nkreipke. All rights reserved.
+//  Copyright © 2016年 WangBo. All rights reserved.
 //
 
 #import "NSString+FTPManagerNSStringAdditions.h"
 
 @implementation NSString (FTPManagerNSStringAdditions)
 - (NSString *)stringWithoutProtocol {
+    // returns the url without the protocol
+    // ftp://test.com/test/test -> test.com/test/test
     NSString *urlString = [NSString stringWithString:self];
     NSRange range = [urlString rangeOfString:@"://"];
     if (range.location != NSNotFound) {
@@ -23,7 +25,7 @@
             if (*(ptr++) == ':') {
                 NSLog(@"FTPManager warning: there is possibly a port included "
                       @"in your destination url. Define the port in "
-                      @"FMServer.port instead.");
+                      @"_checkACDFTPServer.port instead.");
                 break;
             }
         }

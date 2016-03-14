@@ -62,15 +62,10 @@
     if (self) {
         // Initialization code here.
     }
-
     return self;
 }
 
 #pragma mark - Private Methods
-
-- (uint8_t *)buffer {
-    return self->_buffer;
-}
 
 - (unsigned long long)fileSizeOf:(NSURL *)file {
     NSDictionary *attrib =
@@ -86,9 +81,7 @@
        withFileName:(NSString *)fileName
            toServer:(ACDFTPServer *)server {
     BOOL success = YES;
-
     action = ACDCurrentActionUploadFile;
-
     fileSize = data.length;
     fileSizeProcessed = 0;
 
@@ -107,7 +100,6 @@
     And(success, (writeStream != NULL));
     Check(success);
     self.serverStream = (__bridge_transfer NSOutputStream *) writeStream;
-
     And(success,
         [self.serverStream setProperty:server.username
                                 forKey:(id) kCFStreamPropertyFTPUserName]);
@@ -118,26 +110,20 @@
 
     self.bufferOffset = 0;
     self.bufferLimit = 0;
-
     currentRunLoop = CFRunLoopGetCurrent();
-
     self.serverStream.delegate = self;
     [self.serverStream open];
     [self.serverStream scheduleInRunLoop:[NSRunLoop currentRunLoop]
                                  forMode:NSDefaultRunLoopMode];
 
     CFRunLoopRun();
-
     And(success, streamSuccess);
-
     return success;
 }
 
 - (BOOL)_uploadFile:(NSURL *)fileURL toServer:(ACDFTPServer *)server {
     BOOL success = YES;
-
     action = ACDCurrentActionUploadFile;
-
     fileSize = [self fileSizeOf:fileURL];
     fileSizeProcessed = 0;
 
@@ -156,7 +142,6 @@
     And(success, (writeStream != NULL));
     Check(success);
     self.serverStream = (__bridge_transfer NSOutputStream *) writeStream;
-
     And(success,
         [self.serverStream setProperty:server.username
                                 forKey:(id) kCFStreamPropertyFTPUserName]);
@@ -167,27 +152,21 @@
 
     self.bufferOffset = 0;
     self.bufferLimit = 0;
-
     currentRunLoop = CFRunLoopGetCurrent();
-
     self.serverStream.delegate = self;
     [self.serverStream open];
     [self.serverStream scheduleInRunLoop:[NSRunLoop currentRunLoop]
                                  forMode:NSDefaultRunLoopMode];
 
     CFRunLoopRun();
-
     And(success, streamSuccess);
-
     return success;
 }
 
 - (BOOL)_createNewFolder:(NSString *)folderName
                 atServer:(ACDFTPServer *)server {
     BOOL success = YES;
-
     action = ACDCurrentActionCreateNewFolder;
-
     fileSize = 0;
 
     NSURL *finalURL = [[server.destination ftpURLForPort:server.port]
@@ -201,7 +180,6 @@
     And(success, (writeStream != NULL));
     Check(success);
     self.serverStream = (__bridge_transfer NSOutputStream *) writeStream;
-
     And(success,
         [self.serverStream setProperty:server.username
                                 forKey:(id) kCFStreamPropertyFTPUserName]);
@@ -214,26 +192,20 @@
     self.bufferLimit = 0;
 
     currentRunLoop = CFRunLoopGetCurrent();
-
     self.serverStream.delegate = self;
     [self.serverStream open];
     [self.serverStream scheduleInRunLoop:[NSRunLoop currentRunLoop]
                                  forMode:NSDefaultRunLoopMode];
 
     CFRunLoopRun();
-
     And(success, streamSuccess);
-
     return success;
 }
 
 - (NSArray *)_contentsOfServer:(ACDFTPServer *)server {
     BOOL success = YES;
-
     action = ACDCurrentActionContentsOfServer;
-
     fileSize = 0;
-
     self.directoryListingData = [[NSMutableData alloc] init];
 
     NSURL *dest = [server.destination ftpURLForPort:server.port];
@@ -253,7 +225,6 @@
     And(success, (readStream != NULL));
     if (!success) return nil;
     self.serverReadStream = (__bridge_transfer NSInputStream *) readStream;
-
     And(success,
         [self.serverReadStream setProperty:server.username
                                     forKey:(id) kCFStreamPropertyFTPUserName]);
@@ -261,26 +232,19 @@
         [self.serverReadStream setProperty:server.password
                                     forKey:(id) kCFStreamPropertyFTPPassword]);
     if (!success) return nil;
-
     self.bufferOffset = 0;
     self.bufferLimit = 0;
-
     currentRunLoop = CFRunLoopGetCurrent();
-
     self.serverReadStream.delegate = self;
     [self.serverReadStream open];
     [self.serverReadStream scheduleInRunLoop:[NSRunLoop currentRunLoop]
                                      forMode:NSDefaultRunLoopMode];
-
     CFRunLoopRun();
-
     And(success, streamSuccess);
     if (!success) return nil;
-
     NSArray *directoryContents = [self
         _createListingArrayFromDirectoryListingData:self.directoryListingData];
     self.directoryListingData = nil;
-
     return directoryContents;
 }
 
@@ -288,9 +252,7 @@
           toDirectory:(NSURL *)directoryURL
            fromServer:(ACDFTPServer *)server {
     BOOL success = YES;
-
     action = ACDCurrentActionDownloadFile;
-
     fileSize = 0;
     fileSizeProcessed = 0;
 
@@ -324,25 +286,19 @@
 
     self.bufferOffset = 0;
     self.bufferLimit = 0;
-
     currentRunLoop = CFRunLoopGetCurrent();
-
     self.serverReadStream.delegate = self;
     [self.serverReadStream open];
     [self.serverReadStream scheduleInRunLoop:[NSRunLoop currentRunLoop]
                                      forMode:NSDefaultRunLoopMode];
-
     CFRunLoopRun();
-
     And(success, streamSuccess);
-
     if (!success &&
         [[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
         // if the download fails, we try to delete the empty file created by the
         // stream.
         [[NSFileManager defaultManager] removeItemAtPath:filePath error:nil];
     }
-
     return success;
 }
 
@@ -364,7 +320,6 @@
 
 - (NSArray *)_createListingArrayFromDirectoryListingData:(NSMutableData *)data {
     NSMutableArray *listingArray = [NSMutableArray array];
-
     NSUInteger offset = 0;
     do {
         CFIndex bytesConsumed;
@@ -377,7 +332,6 @@
                 NSMutableDictionary *entry = [NSMutableDictionary
                     dictionaryWithDictionary:(__bridge NSDictionary *)
                                                  thisEntry];
-
                 // Converting kCFFTPResourceName entry to UTF8 to fix errors
                 // with Non-ASCII chars
                 NSString *nameEntry;
@@ -388,33 +342,27 @@
                                              allowLossyConversion:YES]
                             encoding:NSUTF8StringEncoding];
                 }
-
                 [listingArray addObject:entry];
             }
             offset += bytesConsumed;
         }
-
         if (thisEntry != NULL) {
             CFRelease(thisEntry);
         }
-
         if (bytesConsumed == 0) {
             break;
         } else if (bytesConsumed < 0) {
             return nil;
         }
     } while (YES);
-
     return listingArray;
 }
 
 - (void)_streamDidEndWithSuccess:(BOOL)success
                    failureReason:(ACDStreamFailureReason)failureReason {
     if (!currentRunLoop) return;
-
     CFRunLoopRef runloop = currentRunLoop;
     currentRunLoop = NULL;
-
     action = ACDCurrentActionNone;
     streamSuccess = success;
     if (!streamSuccess) {
@@ -608,7 +556,6 @@
     [returnValues setValue:[NSNumber numberWithFloat:(float) fileSizeProcessed /
                                                      (float) fileSize]
                     forKey:kFMProcessInfoProgress];
-
     return returnValues;
 }
 
@@ -633,10 +580,8 @@
     if (!currentStream) {
         return;
     }
-
     [self _streamDidEndWithSuccess:YES
                      failureReason:ACDStreamFailureReasonAborted];
-
     [currentStream close];
 }
 
@@ -649,7 +594,6 @@
                 fileSize = [[theStream
                     propertyForKey:(id) kCFStreamPropertyFTPResourceSize]
                     longLongValue];
-
                 if (self.delegate &&
                     [self.delegate
                         respondsToSelector:
@@ -662,7 +606,6 @@
         case NSStreamEventHasBytesAvailable:
             if (action == ACDCurrentActionContentsOfServer) {
                 NSInteger bytesRead;
-
                 bytesRead = [self.serverReadStream read:self.buffer
                                               maxLength:kSendBufferSize];
                 if (bytesRead == -1) {
@@ -680,10 +623,8 @@
                 if (self.bufferOffset == self.bufferLimit) {
                     // fill buffer with data from server
                     NSInteger bytesRead;
-
                     bytesRead = [self.serverReadStream read:self.buffer
                                                   maxLength:kSendBufferSize];
-
                     if (bytesRead == -1) {
                         [self _streamDidEndWithSuccess:NO
                                          failureReason:
@@ -697,7 +638,6 @@
                         self.bufferLimit = bytesRead;
                         fileSizeProcessed += bytesRead;
                         bytesProcessed = bytesRead;
-
                         if (self.delegate &&
                             [self.delegate
                                 respondsToSelector:
@@ -736,10 +676,8 @@
                     // read process
                     // fill buffer with data
                     NSInteger bytesRead;
-
                     bytesRead = [self.fileReader read:self.buffer
                                             maxLength:kSendBufferSize];
-
                     if (bytesRead == -1) {
                         [self _streamDidEndWithSuccess:NO
                                          failureReason:
@@ -753,7 +691,6 @@
                         self.bufferLimit = bytesRead;
                     }
                 }
-
                 if (self.bufferOffset != self.bufferLimit) {
                     // write process
                     // write data out of buffer to server
@@ -769,7 +706,6 @@
                         self.bufferOffset += bytesWritten;
                         fileSizeProcessed += bytesWritten;
                         bytesProcessed = bytesWritten;
-
                         if (self.delegate &&
                             [self.delegate
                                 respondsToSelector:
@@ -932,4 +868,11 @@
     action = ACDCurrentActionNone;
     return streamSuccess;
 }
+
+#pragma mark - Access Methods
+
+- (uint8_t *)buffer {
+    return self->_buffer;
+}
+
 @end

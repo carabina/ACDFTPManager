@@ -2,8 +2,8 @@
 //  ACDFTPManagerThread.h
 //  ACDFTPManager
 //
-//  Created by WangBo on 16/3/14.
-//  Copyright © 2016年 WangBo. All rights reserved.
+//  Created by onedotM on 16/3/14.
+//  Copyright © 2016年 onedotM. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

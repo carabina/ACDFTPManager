@@ -2,16 +2,17 @@
 //  ACDFTPManager.m
 //  ACDFTPManager
 //
-//  Created by WangBo on 16/3/13.
-//  Copyright © 2016年 WangBo. All rights reserved.
+//  Created by onedotM on 16/3/13.
+//  Copyright © 2016年 onedotM. All rights reserved.
 //
 
-#import "ACDFTPServer.h"
 #import <Foundation/Foundation.h>
 #import <netdb.h>
 #import <netinet/in.h>
 #import <sys/socket.h>
 #import <sys/types.h>
+
+@class ACDFTPServer;
 
 enum { kSendBufferSize = 32768 };
 
@@ -56,42 +57,7 @@ typedef NS_ENUM(NSInteger, ACDCurrentAction) {
 // ----------------------(returns NSNumber values)--------------------
 
 #pragma mark -
-@interface ACDFTPManager : NSObject <NSStreamDelegate> {
-    CFRunLoopRef currentRunLoop;
-    ACDCurrentAction action;
-
-    uint8_t _buffer[kSendBufferSize];
-    size_t _bufferOffset;
-    size_t _bufferLimit;
-    unsigned long long fileSize;
-    unsigned long long bytesProcessed;
-    unsigned long long fileSizeProcessed;
-    BOOL streamSuccess;
-}
-
-/**
- *  Input steam for reading from a local file
- */
-@property (strong) NSInputStream *fileReader;
-
-/**
- *  Output stream for writing to a local file
- */
-@property (strong) NSOutputStream *fileWriter;
-
-/**
- *  Input stream for reading from the server (remote file)
- */
-@property (strong) NSInputStream *serverReadStream;
-
-/**
- *  Output stream for writing to the server (remote file)
- */
-@property (strong) NSOutputStream *serverStream;
-
-@property (strong) NSMutableData *directoryListingData;
-
-@property (assign) id<ACDFTPManagerDelegate> delegate;
+@interface ACDFTPManager : NSObject
 
 #pragma mark - Public Methods
 // *** Information

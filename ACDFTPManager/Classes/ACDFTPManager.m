@@ -2,12 +2,13 @@
 //  ACDFTPManager.m
 //  ACDFTPManager
 //
-//  Created by WangBo on 16/3/13.
-//  Copyright © 2016年 WangBo. All rights reserved.
+//  Created by onedotM on 16/3/13.
+//  Copyright © 2016年 onedotM. All rights reserved.
 //
 
 #import "ACDFTPManager.h"
 #import "ACDFTPManagerThread.h"
+#import "ACDFTPServer.h"
 #import "NSString+FTPManagerNSStringAdditions.h"
 
 #define And(val1, val2)                                                        \
@@ -16,12 +17,14 @@
 #define AndV(val1, val2, message)                                              \
     {                                                                          \
         And(val1, val2);                                                       \
-        if (!val2) NSLog(message);                                             \
+        if (!val2)                                                             \
+            NSLog(message);                                                    \
     }
 
 #define Check(val1)                                                            \
     {                                                                          \
-        if (val1 == NO) return NO;                                             \
+        if (val1 == NO)                                                        \
+            return NO;                                                         \
     }
 
 #define RunInSeparateThread(...)                                               \
@@ -34,21 +37,57 @@
     })
 
 #pragma mark -
-
-@interface ACDFTPManager ()
+@interface ACDFTPManager () <NSStreamDelegate> {
+    CFRunLoopRef currentRunLoop;
+    ACDCurrentAction action;
+    uint8_t _buffer[kSendBufferSize];
+    size_t _bufferOffset;
+    size_t _bufferLimit;
+    unsigned long long fileSize;
+    unsigned long long bytesProcessed;
+    unsigned long long fileSizeProcessed;
+    BOOL streamSuccess;
+}
 
 @property (nonatomic, readonly) uint8_t *buffer;
 @property (nonatomic, assign) size_t bufferOffset;
 @property (nonatomic, assign) size_t bufferLimit;
 
+/**
+ *  Input steam for reading from a local file
+ */
+@property (nonatomic, strong) NSInputStream *fileReader;
+
+/**
+ *  Output stream for writing to a local file
+ */
+@property (nonatomic, strong) NSOutputStream *fileWriter;
+
+/**
+ *  Input stream for reading from the server (remote file)
+ */
+@property (nonatomic, strong) NSInputStream *serverReadStream;
+
+/**
+ *  Output stream for writing to the server (remote file)
+ */
+@property (nonatomic, strong) NSOutputStream *serverStream;
+
+/**
+ *  server file list (remote file)
+ */
+@property (nonatomic, strong) NSMutableData *directoryListingData;
+
+@property (nonatomic, assign) id<ACDFTPManagerDelegate> delegate;
+
 - (void)_streamDidEndWithSuccess:(BOOL)success
                    failureReason:(ACDStreamFailureReason)failureReason;
+
 - (BOOL)_ftpActionForServer:(ACDFTPServer *)server
                     command:(NSString *)fullCommand;
 @end
 
 #pragma mark -
-
 @implementation ACDFTPManager
 
 @synthesize bufferOffset = _bufferOffset;
@@ -56,7 +95,6 @@
 @synthesize delegate = _delegate;
 
 #pragma mark - Life Cycle
-
 - (id)init {
     self = [super init];
     if (self) {
@@ -66,7 +104,6 @@
 }
 
 #pragma mark - Private Methods
-
 - (unsigned long long)fileSizeOf:(NSURL *)file {
     NSDictionary *attrib =
         [[NSFileManager defaultManager] attributesOfItemAtPath:file.path
@@ -223,7 +260,8 @@
     CFReadStreamRef readStream =
         CFReadStreamCreateWithFTPURL(NULL, (__bridge CFURLRef) dest);
     And(success, (readStream != NULL));
-    if (!success) return nil;
+    if (!success)
+        return nil;
     self.serverReadStream = (__bridge_transfer NSInputStream *) readStream;
     And(success,
         [self.serverReadStream setProperty:server.username
@@ -231,7 +269,8 @@
     And(success,
         [self.serverReadStream setProperty:server.password
                                     forKey:(id) kCFStreamPropertyFTPPassword]);
-    if (!success) return nil;
+    if (!success)
+        return nil;
     self.bufferOffset = 0;
     self.bufferLimit = 0;
     currentRunLoop = CFRunLoopGetCurrent();
@@ -241,7 +280,8 @@
                                      forMode:NSDefaultRunLoopMode];
     CFRunLoopRun();
     And(success, streamSuccess);
-    if (!success) return nil;
+    if (!success)
+        return nil;
     NSArray *directoryContents = [self
         _createListingArrayFromDirectoryListingData:self.directoryListingData];
     self.directoryListingData = nil;
@@ -360,7 +400,8 @@
 
 - (void)_streamDidEndWithSuccess:(BOOL)success
                    failureReason:(ACDStreamFailureReason)failureReason {
-    if (!currentRunLoop) return;
+    if (!currentRunLoop)
+        return;
     CFRunLoopRef runloop = currentRunLoop;
     currentRunLoop = NULL;
     action = ACDCurrentActionNone;
@@ -586,7 +627,6 @@
 }
 
 #pragma mark - NSStream Delegate
-
 - (void)stream:(NSStream *)theStream handleEvent:(NSStreamEvent)streamEvent {
     switch (streamEvent) {
         case NSStreamEventOpenCompleted:
@@ -827,11 +867,13 @@
     // we now send login commands
     sprintf(cmd, "USER %s\r\n", user);
     n = write(sockfd, cmd, strlen(cmd));
-    if (n < 0) return NO;
+    if (n < 0)
+        return NO;
     bzero(cmd, 256);
     sprintf(cmd, "PASS %s\r\n", pass);
     n = write(sockfd, cmd, strlen(cmd));
-    if (n < 0) return NO;
+    if (n < 0)
+        return NO;
     // logged in!
     if (fullCommand) {
         if (chdir) {
@@ -839,27 +881,31 @@
             bzero(cmd, 256);
             sprintf(cmd, "CWD %s\r\n", wdir);
             n = write(sockfd, cmd, strlen(cmd));
-            if (n < 0) return NO;
+            if (n < 0)
+                return NO;
         }
 #ifdef FMSOCKET_VERBOSE
         // if verbose, print out location:
         bzero(cmd, 256);
         sprintf(cmd, "PWD\r\n");
         n = write(sockfd, cmd, strlen(cmd));
-        if (n < 0) return NO;
+        if (n < 0)
+            return NO;
 #endif
         // now send the command:
         bzero(cmd, 256);
         sprintf(cmd, "%s\r\n",
                 [fullCommand cStringUsingEncoding:NSUTF8StringEncoding]);
         n = write(sockfd, cmd, strlen(cmd));
-        if (n < 0) return NO;
+        if (n < 0)
+            return NO;
     }
     // and say goodbye:
     bzero(cmd, 256);
     sprintf(cmd, "QUIT\r\n");
     n = write(sockfd, cmd, strlen(cmd));
-    if (n < 0) return NO;
+    if (n < 0)
+        return NO;
     // --------
     // now, fetch the answers:
     NSString *answer = [self _listenLoopForSocket:sockfd];
@@ -870,7 +916,6 @@
 }
 
 #pragma mark - Access Methods
-
 - (uint8_t *)buffer {
     return self->_buffer;
 }

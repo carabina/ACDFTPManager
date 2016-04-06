@@ -294,7 +294,7 @@
 				GCC_PREFIX_HEADER = "ACDFTPManager/Supporting Files/FTPManager-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/ACDFTPManager/Supporting Files/FTPManager-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				PRODUCT_BUNDLE_IDENTIFIER = com.WangBo.ACDFTPManager;
+				PRODUCT_BUNDLE_IDENTIFIER = com.onedotM.ACDFTPManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
@@ -309,7 +309,7 @@
 				GCC_PREFIX_HEADER = "ACDFTPManager/Supporting Files/FTPManager-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/ACDFTPManager/Supporting Files/FTPManager-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				PRODUCT_BUNDLE_IDENTIFIER = com.WangBo.ACDFTPManager;
+				PRODUCT_BUNDLE_IDENTIFIER = com.onedotM.ACDFTPManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;

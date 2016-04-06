@@ -88,7 +88,6 @@
 }
 
 #pragma mark - FTPManager interaction
-
 - (void)endRunAction:(NSArray *)optionalServerData {
     [NSApp endSheet:self.actionPanel];
     if (progressTimer) {
@@ -114,6 +113,7 @@
 
 - (void)_runAction {
     ftpManager = [[ACDFTPManager alloc] init];
+    ftpManager.delegate = self;
     success = NO;
     NSArray *serverData = nil;
     ACDFTPServer *srv = [ACDFTPServer
@@ -292,6 +292,10 @@
 }
 - (IBAction)dismissChmodPanel:(id)sender {
     [NSApp endSheet:self.chmodPanel];
+}
+
+- (void)hasError:(Boolean)hasError {
+    NSLog(@"%hhu", hasError);
 }
 
 @end

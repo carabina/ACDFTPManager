@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <netdb.h>
-#import <netinet/in.h>
-#import <sys/socket.h>
-#import <sys/types.h>
+//#import <netdb.h>
+//#import <netinet/in.h>
+//#import <sys/socket.h>
+//#import <sys/types.h>
 
 @class ACDFTPServer;
 
@@ -45,6 +45,8 @@ typedef NS_ENUM(NSInteger, ACDCurrentAction) {
 - (void)ftpManagerDownloadProgressDidChange:(NSDictionary *)processInfo;
 // Returns information about the current download.
 // See "Process Info Dictionary Constants" below for detailed info.
+@required
+- (void)hasError:(Boolean)hasError;
 @end
 
 #pragma mark - Process Info Dictionary Constants
@@ -58,6 +60,8 @@ typedef NS_ENUM(NSInteger, ACDCurrentAction) {
 
 #pragma mark -
 @interface ACDFTPManager : NSObject
+
+@property (nonatomic, assign) id<ACDFTPManagerDelegate> delegate;
 
 #pragma mark - Public Methods
 // *** Information

@@ -6,6 +6,11 @@
 //  Copyright © 2016年 onedotM. All rights reserved.
 //
 
+#import <netdb.h>
+#import <netinet/in.h>
+#import <sys/socket.h>
+#import <sys/types.h>
+
 #import "ACDFTPManager.h"
 #import "ACDFTPManagerThread.h"
 #import "ACDFTPServer.h"
@@ -41,8 +46,6 @@
     CFRunLoopRef currentRunLoop;
     ACDCurrentAction action;
     uint8_t _buffer[kSendBufferSize];
-    size_t _bufferOffset;
-    size_t _bufferLimit;
     unsigned long long fileSize;
     unsigned long long bytesProcessed;
     unsigned long long fileSizeProcessed;
@@ -78,18 +81,14 @@
  */
 @property (nonatomic, strong) NSMutableData *directoryListingData;
 
-@property (nonatomic, assign) id<ACDFTPManagerDelegate> delegate;
-
 - (void)_streamDidEndWithSuccess:(BOOL)success
                    failureReason:(ACDStreamFailureReason)failureReason;
-
 - (BOOL)_ftpActionForServer:(ACDFTPServer *)server
                     command:(NSString *)fullCommand;
 @end
 
 #pragma mark -
 @implementation ACDFTPManager
-
 @synthesize bufferOffset = _bufferOffset;
 @synthesize bufferLimit = _bufferLimit;
 @synthesize delegate = _delegate;
@@ -406,6 +405,7 @@
     currentRunLoop = NULL;
     action = ACDCurrentActionNone;
     streamSuccess = success;
+
     if (!streamSuccess) {
         switch (failureReason) {
             case ACDStreamFailureReasonReadError:
@@ -417,6 +417,10 @@
             case ACDStreamFailureReasonGeneralError:
                 NSLog(@"ftp stream failed: general stream error (check "
                       @"credentials?)");
+                if (self.delegate &&
+                    [self.delegate respondsToSelector:@selector(hasError:)]) {
+                    [self.delegate hasError:YES];
+                }
                 break;
             default:
                 break;
@@ -627,6 +631,7 @@
 }
 
 #pragma mark - NSStream Delegate
+//根据系统监听到的网络事件，做出对应的响应，同时给出响应的状态、错误信息
 - (void)stream:(NSStream *)theStream handleEvent:(NSStreamEvent)streamEvent {
     switch (streamEvent) {
         case NSStreamEventOpenCompleted:

@@ -19,7 +19,8 @@ typedef NS_ENUM(NSInteger, actions) {
     nothing
 };
 
-@interface AppDelegate : NSObject <NSApplicationDelegate> {
+@interface AppDelegate
+    : NSObject <NSApplicationDelegate, ACDFTPManagerDelegate> {
 
     __weak NSTextField *_serverURLField;
     __weak NSTextField *_loginUserField;
@@ -77,4 +78,6 @@ typedef NS_ENUM(NSInteger, actions) {
 @property (unsafe_unretained) IBOutlet NSPanel *chmodPanel;
 @property (weak) IBOutlet NSTextField *chmodFileField;
 @property (weak) IBOutlet NSTextField *chmodModeField;
+
+- (void)hasError:(Boolean)hasError;
 @end

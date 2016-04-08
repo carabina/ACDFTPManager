@@ -10,13 +10,13 @@
 #import <Cocoa/Cocoa.h>
 
 typedef NS_ENUM(NSInteger, actions) {
-    upload,
-    download,
-    list,
-    newfolder,
-    del,
-    chmod,
-    nothing
+    acd_upload,
+    acd_download,
+    acd_list,
+    acd_newfolder,
+    acd_del,
+    acd_chmod,
+    acd_nothing
 };
 
 @interface AppDelegate

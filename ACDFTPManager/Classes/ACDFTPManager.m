@@ -6,11 +6,6 @@
 //  Copyright © 2016年 onedotM. All rights reserved.
 //
 
-#import <netdb.h>
-#import <netinet/in.h>
-#import <sys/socket.h>
-#import <sys/types.h>
-
 #import "ACDFTPManager.h"
 #import "ACDFTPManagerThread.h"
 #import "ACDFTPServer.h"

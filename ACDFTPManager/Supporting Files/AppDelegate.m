@@ -124,29 +124,29 @@
                      password:self.loginPasswordField.stringValue];
     srv.port = self.portField.intValue;
     switch (action) {
-        case upload:
+        case acd_upload:
             success = [ftpManager uploadFile:fileURL toServer:srv];
             break;
-        case download:
+        case acd_download:
             success = [ftpManager
                 downloadFile:self.downloadFileField.stringValue
                  toDirectory:[NSURL fileURLWithPath:NSHomeDirectory()]
                   fromServer:srv];
             break;
-        case newfolder:
+        case acd_newfolder:
             success = [ftpManager
                 createNewFolder:self.createDirectoryField.stringValue
                        atServer:srv];
             break;
-        case list:
+        case acd_list:
             serverData = [ftpManager contentsOfServer:srv];
             break;
-        case del:
+        case acd_del:
             success =
                 [ftpManager deleteFileNamed:self.deleteFileField.stringValue
                                  fromServer:srv];
             break;
-        case chmod:
+        case acd_chmod:
             success = [ftpManager chmodFileNamed:self.chmodFileField.stringValue
                                               to:self.chmodModeField.intValue
                                         atServer:srv];
@@ -157,7 +157,7 @@
     [self performSelectorOnMainThread:@selector(endRunAction:)
                            withObject:serverData
                         waitUntilDone:NO];
-    action = nothing;
+    action = acd_nothing;
 }
 
 - (void)runAction {
@@ -167,11 +167,11 @@
          modalDelegate:self
         didEndSelector:@selector(didEndSheet:returnCode:contextInfo:)
            contextInfo:nil];
-    if (action != nothing) {
+    if (action != acd_nothing) {
         [self performSelectorInBackground:@selector(_runAction) withObject:nil];
         [self.actionProgressField setStringValue:@""];
         [self.actionProgressBar setMaxValue:1.0];
-        if (action == download || action == upload) {
+        if (action == acd_download || action == acd_upload) {
             [self.actionProgressBar setIndeterminate:NO];
             [self.actionProgressBar setDoubleValue:0.0];
             progressTimer = [NSTimer
@@ -202,10 +202,10 @@
                           [openPanel close];
                           if (result == NSFileHandlingPanelOKButton) {
                               fileURL = [[openPanel URLs] objectAtIndex:0];
-                              action = upload;
+                              action = acd_upload;
                               [self runAction];
                           } else {
-                              action = nothing;
+                              action = acd_nothing;
                           }
                       }];
 }
@@ -222,12 +222,12 @@
     [NSApp endSheet:self.downloadFilePanel];
     //    [self.downloadFilePanel close];
     //    [self.downloadFilePanel orderOut:self];
-    action = download;
+    action = acd_download;
     [self runAction];
 }
 
 - (IBAction)pushListFiles:(id)sender {
-    action = list;
+    action = acd_list;
     [self runAction];
 }
 
@@ -241,7 +241,7 @@
 
 - (IBAction)createADirectory:(id)sender {
     [NSApp endSheet:self.directoryPanel];
-    action = newfolder;
+    action = acd_newfolder;
     [self runAction];
 }
 - (IBAction)pushDeleteAFile:(id)sender {
@@ -253,7 +253,7 @@
 }
 - (IBAction)confirmDeleteAFile:(id)sender {
     [NSApp endSheet:self.deletePanel];
-    action = del;
+    action = acd_del;
     [self runAction];
 }
 - (IBAction)pushChmod:(id)sender {
@@ -265,7 +265,7 @@
 }
 - (IBAction)confirmChmod:(id)sender {
     [NSApp endSheet:self.chmodPanel];
-    action = chmod;
+    action = acd_chmod;
     [self runAction];
 }
 

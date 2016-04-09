@@ -8,7 +8,6 @@
 
 #import "ACDFTPManager.h"
 #import "ACDFTPManagerThread.h"
-#import "ACDFTPServer.h"
 #import "NSString+FTPManagerNSStringAdditions.h"
 
 #define And(val1, val2)                                                        \

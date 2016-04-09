@@ -6,13 +6,12 @@
 //  Copyright © 2016年 onedotM. All rights reserved.
 //
 
+#import "ACDFTPServer.h"
 #import <Foundation/Foundation.h>
 #import <netdb.h>
 #import <netinet/in.h>
 #import <sys/socket.h>
 #import <sys/types.h>
-
-@class ACDFTPServer;
 
 enum { kSendBufferSize = 32768 };
 

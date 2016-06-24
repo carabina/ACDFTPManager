@@ -16,8 +16,8 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "ACDFTPManager"
-  s.version      = "1.0"
-  s.summary      = "ACDFTPManager by OC."
+  s.version      = "1.0.0"
+  s.summary      = "A simple FTP Manager."
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
                         An Objective-C class for simple access to FTP servers.
                    DESC
 
-  s.homepage     = "https://github.com/onedotman/ACDFTPManager"
+  s.homepage     = "https://github.com/nolol/ACDFTPManager"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
